@@ -1,0 +1,82 @@
+.Admin{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.Admin .cardAdmin{
+    width: 500px;
+    max-width: 100%;
+    padding: 30px 50px;
+    background: #071a52;
+    border-radius: 5px;
+    box-shadow: 0px 0px 9px 0px #00000091;
+}
+.Admin .form-group{
+    margin-bottom: 15px;
+    text-align: center
+}
+.Admin .form-group:not(:last-child){
+    border-bottom: solid 2px white;
+}
+
+.Admin h2,.Admin button{
+    color: white;
+}
+.Admin h2{
+    text-align: center;
+    margin-top: 0;
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+.Admin label{
+   font-size: 14px
+}
+.Admin .btnadressValide{
+    background: #17b978;
+    border: none;
+    border-radius: 3px;
+    height: 30px;
+    /* min-width: 120px; */
+    box-shadow: none;
+    outline: none;
+    margin: 20px 0;
+    width: 100%;
+    text-align: center
+}
+
+
+.Admin .btnadressNonValide{
+    background: #878b89;
+    border: none;
+    border-radius: 3px;
+    height: 30px;
+    /* min-width: 120px; */
+    box-shadow: none;
+    outline: none;
+    margin: 20px 0;
+    width: 100%;
+    text-align: center
+}
+
+
+
+.Admin input{
+    height: 33px;
+    border-radius: 3px;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    width: 100%
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}

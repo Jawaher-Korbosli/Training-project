@@ -1,0 +1,40 @@
+.Home{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.Home .cardHome{
+    width: 500px;
+    max-width: 100%;
+    padding: 30px 50px;
+    background: #071a52;
+    border-radius: 5px;
+    box-shadow: 0px 0px 9px 0px #00000091;
+    text-align: center
+}
+.Home .form-group{
+    margin-bottom: 15px
+}
+
+.Home h2{
+    text-align: center;
+    margin-top: 0;
+    font-size: 20px;
+    margin-bottom: 30px;
+    color: white
+}
+.Home img{
+    width: 80px;
+}                         
+.Home button{
+    background: #17b978;
+    border: none;
+    border-radius: 3px;
+    height: 30px;
+    width: 100%;
+    box-shadow: none;
+    outline: none;
+    margin: 20px 0;
+    color: white
+}

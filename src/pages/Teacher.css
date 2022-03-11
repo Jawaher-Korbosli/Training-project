@@ -1,0 +1,121 @@
+.Teacher{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.Teacher .Modal p {
+   text-align: center;
+   background-color: green;
+}
+.Teacher .cardMed{
+    width: 500px;
+    max-width: 100%;
+    padding: 30px 50px 50px;
+    background: #071a52;
+    border-radius: 5px;
+    box-shadow: 0px 0px 9px 0px #00000091;
+}
+.Teacher .form-row{
+    margin-bottom: 15px
+}
+.Teacher .key{
+    color: white;
+    background: #086972;
+    padding: 10px;
+    text-align: center;
+    border-radius: 3px;
+    user-select: none;
+}
+.Teacher h2,.Teacher label,.Teacher button,.Teacherp{
+    color: white;
+}
+.Teacher video{
+    width: 100% !important
+}
+.Teacher h2{
+    text-align: center;
+    margin-top: 0;
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+.Teacher label{
+   font-size: 14px
+}
+.Teacher .btnadressValide {
+    background: #17b978;
+    border: none;
+    border-radius: 3px;
+    height: 30px;
+    width: 100%;
+    box-shadow: none;
+    outline: none;
+    margin: 20px 0;
+}
+.Teacher .btnadressNonValide{
+    background: #878b89;
+    border: none;
+    border-radius: 3px;
+    height: 30px;
+    /* min-width: 120px; */
+    box-shadow: none;
+    outline: none;
+    margin: 20px 0;
+    width: 100%;
+    text-align: center
+}
+.Teacher input{
+    height: 33px;
+    border-radius: 3px;
+    border: none;
+    outline: none;
+    font-size: 14px
+}
+
+.Teacher .qrcode{
+    display: none;
+    width:500px;
+    height: 500px; 
+    color:red;
+    size:500px
+ 
+}
+
+.Teacher #canvas {
+    width:400px;
+    height:400px;
+    margin-top:15px;
+    size:500px
+ 
+  }
+/* .Teacher .qrcanvas{
+   
+
+    width:400px;
+    height:400px; 
+    margin:20px 20px 20px 0;
+   
+} */
+
+@media print {
+    .Teacher .qrcode{
+        display: none;
+        width:100%;
+        height: 100%; 
+        color:red;
+      
+     
+    }
+    .Teacher .cardMed {
+        box-shadow: none
+    }
+    .Teacher .cardMed >div:not(.qrcode),.Teacher h2{
+        display: none;
+    }
+    .Teacher .qrcode{
+        display: block; 
+    }
+
+}
+   
