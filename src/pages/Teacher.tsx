@@ -24,17 +24,7 @@ const Teacher = () => {
       transform: "translate(-50%, -50%)",
     },
   };
-  // const customStyles = {
-  //   content : {
-  //     top                   : '50%',
-  //     left                  : '50%',
-  //     right                 : 'auto',
-  //     bottom                : 'auto',
-  //     marginRight           : '-50%',
-  //     transform             : 'translate(-50%, -50%)',
-  //     padding: "100px 120px 50px",
-  //   }
-  // };
+
 
   const handleChange = (event: any) => {
     if (event.target.name == "dateReportCard") {
@@ -59,15 +49,8 @@ const Teacher = () => {
   const [gradeMatter, setGrade] = useState("");
   const [periodeMatter, setPeriode] = useState("");
 
-  const [id, setId] = useState("");
-  function generateId(len: any) {
-    var arr = new Uint8Array((len || 40) / 2);
-    window.crypto.getRandomValues(arr);
-    return Array.from(arr, dec2hex).join("");
-  }
-  function dec2hex(dec: any) {
-    return ("0" + dec.toString(16)).substr(-2);
-  }
+  const [id, setId] = useState("79948087976a297cda296d35efaf9a5eaea57528");
+
 
   const convertisseurStringToJson = () => {
     if (
@@ -85,11 +68,11 @@ const Teacher = () => {
       });
     } else {
       setShowModal(true);
-      const id = generateId(40);
-      setId(id);
+      //const id = generateId(40);
+
       const ReportCard = {
         date: dateReportCard,
-        Student: nomStudent,
+        student: nomStudent,
         dateNaissance: dateNaissance,
         matter: nomMatter,
         grade: gradeMatter,
@@ -98,9 +81,6 @@ const Teacher = () => {
       const stringReportCard = JSON.stringify(ReportCard);
 
       const encrypted = CryptoJS.AES.encrypt(stringReportCard, id);
-      QRCode.toCanvas(document.getElementById("canvas"), id, function (error) {
-        if (error) console.error(error);
-      });
 
       addReportCardFunction(encrypted.toString(), (error, response) => {
         if (error) {
@@ -117,27 +97,24 @@ const Teacher = () => {
           setShowModal(false);
 
           setactivePrint(false);
-          window.print();
+
+
 
           Swal.fire(
-            "Succès!",
             "ReportCard a été ajouté avec succès!",
+            genereCode,
             "success"
           );
         }
       });
     }
   };
-  const PrintQrCode = () => {
-    var canvas: any;
+  const showReportCard = () => {
 
-    QRCode.toCanvas(document.getElementById("canvas"), id, function (error) {
-      if (error) console.error(error);
-      else {
-        window.print();
-      }
-    });
+    window.location.assign('#/ReportCard')
+
   };
+
   useEffect(() => {
     let state = store.getState();
     if (state.user && state.user.address) {
@@ -183,7 +160,7 @@ const Teacher = () => {
           </div>
         </ReactModal>
       </div>
-      <div className="cardMed">
+      <div className="cardReport">
         <h2 className="title">Teacher</h2>
         <div className="form-row">
           <label htmlFor="Date" className="col-md-6">
@@ -272,21 +249,28 @@ const Teacher = () => {
           </div>
           <div className="col-md-6">
             <button
-              onClick={PrintQrCode}
+              onClick={showReportCard}
               disabled={activePrint}
               className={
                 !activePrint ? "btnadressValide" : "btnadressNonValide"
               }
             >
-              Print code{" "}
+              see the report card{" "}
             </button>
+
+
           </div>
         </div>
-        <div className="qrcode">
-          <canvas id="canvas" />
-          {/* <canvas className="qrcanvas" id="canvas" width="1000" height="1000" /> */}
-          <p className="code"> your code {code}</p>
-        </div>
+        {code &&
+          <div className="form-row">
+            <label className="code col-md-6">
+              The id of report card :  {code}
+            </label>
+
+          </div>}
+
+
+
       </div>
     </div>
   ) : (

@@ -11,6 +11,7 @@ import createHistory from "history/createBrowserHistory";
 import Home from "./pages/Home";
 import Admin from "./pages/Admin";
 import Teacher from "./pages/Teacher";
+import ReportCard from "./pages/ReportCard";
 import store from "./redux/store";
 import { PersistGate } from "redux-persist/integration/react";
 
@@ -36,6 +37,9 @@ function App() {
             </Route>
             <Route exact path="/Teacher">
               <TeacherLink></TeacherLink>
+            </Route>
+            <Route exact path="/ReportCard">
+              <ReportCardLink></ReportCardLink>
             </Route>
           </Switch>
         </HashRouter>
@@ -68,6 +72,9 @@ function AdminLink() {
 }
 function TeacherLink() {
   return <Teacher />;
+}
+function ReportCardLink() {
+  return <ReportCard />;
 }
 
 export default App;

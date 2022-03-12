@@ -9,7 +9,7 @@
    text-align: center;
    background-color: green;
 }
-.Teacher .cardMed{
+.Teacher .cardReport{
     width: 500px;
     max-width: 100%;
     padding: 30px 50px 50px;
@@ -107,15 +107,14 @@
       
      
     }
-    .Teacher .cardMed {
+    .Teacher .cardReport {
         box-shadow: none
     }
-    .Teacher .cardMed >div:not(.qrcode),.Teacher h2{
+    .Teacher .cardReport >div:not(.qrcode),.Teacher h2{
         display: none;
     }
-    .Teacher .qrcode{
-        display: block; 
-    }
+
+   
 
 }
    
