@@ -49,8 +49,15 @@ const Teacher = () => {
   const [gradeMatter, setGrade] = useState("");
   const [periodeMatter, setPeriode] = useState("");
 
-  const [id, setId] = useState("79948087976a297cda296d35efaf9a5eaea57528");
-
+  const [id, setId] = useState("");
+  function generateId(len: any) {
+    var arr = new Uint8Array((len || 40) / 2);
+    window.crypto.getRandomValues(arr);
+    return Array.from(arr, dec2hex).join("");
+  }
+  function dec2hex(dec: any) {
+    return ("0" + dec.toString(16)).substr(-2);
+  }
 
   const convertisseurStringToJson = () => {
     if (
@@ -64,12 +71,12 @@ const Teacher = () => {
       Swal.fire({
         icon: "error",
         title: "Error...",
-        text: "Please fill in the ReportCard fields!",
+        text: "Please fill in the report card fields!",
       });
     } else {
       setShowModal(true);
-      //const id = generateId(40);
-
+      const id = generateId(40);
+      setId(id);
       const ReportCard = {
         date: dateReportCard,
         student: nomStudent,
@@ -81,6 +88,9 @@ const Teacher = () => {
       const stringReportCard = JSON.stringify(ReportCard);
 
       const encrypted = CryptoJS.AES.encrypt(stringReportCard, id);
+      QRCode.toCanvas(document.getElementById("canvas"), id, function (error) {
+        if (error) console.error(error);
+      });
 
       addReportCardFunction(encrypted.toString(), (error, response) => {
         if (error) {
@@ -97,12 +107,12 @@ const Teacher = () => {
           setShowModal(false);
 
           setactivePrint(false);
-
+          window.print();
 
 
           Swal.fire(
-            "ReportCard a été ajouté avec succès!",
-            genereCode,
+            "Succès!",
+            "Report card added with success!",
             "success"
           );
         }
@@ -268,8 +278,11 @@ const Teacher = () => {
             </label>
 
           </div>}
-
-
+          <div className="qrcode">
+          <canvas id="canvas" />
+          {/* <canvas className="qrcanvas" id="canvas" width="1000" height="1000" /> */}
+          <p className="code"> your code {code}</p>
+        </div>
 
       </div>
     </div>

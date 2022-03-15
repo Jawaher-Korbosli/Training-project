@@ -14,7 +14,9 @@ import store from "../redux/store";
 import ReactModal from "react-modal";
 const ReportCard = () => {
   const [isTeacher, setIsTeacher] = useState(false);
-  const [key, setKey] = useState("79948087976a297cda296d35efaf9a5eaea57528");
+  const [key, setKey] = useState("");
+  const [isQrScanned, setIsQrScanned] = useState(false);
+  const [showQr, setShowQr] = useState(false);
   const [Matter, setMatter] = useState("");
   const [grade, setGrade] = useState("");
   const [periode, setPeriode] = useState("");
@@ -39,6 +41,16 @@ const ReportCard = () => {
       marginRight: "-30%",
        transform: "translate(-50%, -50%)",
       
+    }
+  };
+
+  const handleClick = () => {
+    setShowQr(true);
+  };
+  const handleScan = (data: string | null) => {
+    if (data) {
+      setKey(data);
+      setIsQrScanned(true);
     }
   };
 
@@ -151,14 +163,29 @@ const ReportCard = () => {
             className="col-md-6"
           />
         </div>
-        
+        {showQr ? (
+          <QrReader
+            delay={300}
+            style={previewStyle}
+            onError={handleError}
+            onScan={handleScan}
+          />
+        ) : (
+          <button onClick={() => handleClick()}>Scan Qrcode</button>
+        )}
       
+      {isQrScanned && (
+          <>
+            <p className="key">{key}</p>
+            <button onClick={getBlockReportCard}>Get Prescription</button>
+          </>
+        )}
 
-        {code && (
+        {/*code && (
           <>
             <button onClick={getBlockReportCard}>Get ReportCard</button>
           </>
-        )}
+        )*/}
 
         {showInput && (
           <>

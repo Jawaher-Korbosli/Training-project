@@ -113,7 +113,9 @@
     .Teacher .cardReport >div:not(.qrcode),.Teacher h2{
         display: none;
     }
-
+    .Teacher .qrcode{
+        display: block; 
+    }
    
 
 }
