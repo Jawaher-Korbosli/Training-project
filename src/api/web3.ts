@@ -12,6 +12,8 @@ const ReportCardContract = TruffleContract(ReportCard);
 //@ts-ignore
 const administrationContract = TruffleContract(Administration);
 
+const ReportCardContractAddress = "0x0a342F8024f7b24927E4dF89e182f0EdF8fb3Fa5";
+const administrationContractAddress = "0x7298119bd49B97Fb2557A60a4bA6a9490c810cc0";
 
 
 const user = store.getState().user;
@@ -46,7 +48,7 @@ export async function addReportCardFunction(
   try {
     ReportCardContract.setProvider(web3.currentProvider);
     const pres = await ReportCardContract.at(
-      "0x0a342F8024f7b24927E4dF89e182f0EdF8fb3Fa5"
+      ReportCardContractAddress
     );
     let prestx = await pres
       .addReportCard(contenu, { from: user.address })
@@ -75,7 +77,7 @@ export async function getReportCardFunction(
   try {
     ReportCardContract.setProvider(web3.currentProvider);
     const pres = await ReportCardContract.at(
-      "0x0a342F8024f7b24927E4dF89e182f0EdF8fb3Fa5"
+      ReportCardContractAddress
     );
     let prestx = await pres
       .getReportCard(id, { from: user.address })
@@ -102,7 +104,7 @@ export async function updateReportCardFunction(
   try {
     ReportCardContract.setProvider(web3.currentProvider);
     const pres = await ReportCardContract.at(
-      "0x0a342F8024f7b24927E4dF89e182f0EdF8fb3Fa5"
+      ReportCardContractAddress
     );
     let prestx = await pres
       .updateReportCard(contenu, nbreBloc, {
@@ -128,7 +130,7 @@ export async function addTeacherFunction(address: string, callback: any) {
   try {
     administrationContract.setProvider(web3.currentProvider);
     const addD = await administrationContract.at(
-      "0x7298119bd49B97Fb2557A60a4bA6a9490c810cc0"
+      administrationContractAddress
     );
     await addD
       .addTeacher(address, { from: user.address })
@@ -149,7 +151,7 @@ export async function addAdminFunction(address: string, callback: any) {
   try {
     administrationContract.setProvider(web3.currentProvider);
     const instanceContractAdmin = await administrationContract.at(
-      "0x7298119bd49B97Fb2557A60a4bA6a9490c810cc0"
+      administrationContractAddress
     );
     await instanceContractAdmin
       .addAdmin(address, { from: user.address })
@@ -169,7 +171,7 @@ export async function removeAdminFunction(address: string, callback: any) {
   try {
     administrationContract.setProvider(web3.currentProvider);
     const cont = await administrationContract.at(
-      "0x7298119bd49B97Fb2557A60a4bA6a9490c810cc0"
+      administrationContractAddress
     );
     let removeAdmin = await cont
       .removeAdmin(address, { from: user.address })
@@ -192,7 +194,7 @@ export async function removeTeacherFunction(address: string, callback: any) {
   try {
     administrationContract.setProvider(web3.currentProvider);
     const cont = await administrationContract.at(
-      "0x7298119bd49B97Fb2557A60a4bA6a9490c810cc0"
+      administrationContractAddress
     );
     let removeTeacher = await cont
       .removeTeacher(address, { from: user.address })
@@ -214,7 +216,7 @@ export async function isAdminFunction(address: string, callback: any) {
   try {
     administrationContract.setProvider(web3.currentProvider);
     const cont = await administrationContract.at(
-      "0x7298119bd49B97Fb2557A60a4bA6a9490c810cc0"
+      administrationContractAddress
     );
     console.log("user.address",user.address  );
     let isAdmin = await cont.isAdmin(address, { from: user.address });
@@ -232,7 +234,7 @@ export async function isTeacherFunction(address: string, callback: any) {
   try {
     administrationContract.setProvider(web3.currentProvider);
     const cont = await administrationContract.at(
-      "0x7298119bd49B97Fb2557A60a4bA6a9490c810cc0"
+      administrationContractAddress
     );
     let isTeacher = await cont.isTeacher(address, { from: user.address });
 

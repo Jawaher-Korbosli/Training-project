@@ -43,12 +43,13 @@ function useAsync<Params, Response>(
 
       return { data };
     } catch (error) {
+      //@ts-ignore
       setState((state) => ({
         ...state,
         pending: false,
         error,
       }));
-
+      //@ts-ignore
       return { error };
     }
   }

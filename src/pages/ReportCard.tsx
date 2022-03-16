@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import CryptoJS from "crypto-js";
-import QrReader from "react-qr-scanner";
+
 import {
   getReportCardFunction,
   updateReportCardFunction,
@@ -14,7 +13,6 @@ import store from "../redux/store";
 import ReactModal from "react-modal";
 const ReportCard = () => {
   const [isTeacher, setIsTeacher] = useState(false);
-  const [key, setKey] = useState("79948087976a297cda296d35efaf9a5eaea57528");
   const [Matter, setMatter] = useState("");
   const [grade, setGrade] = useState("");
   const [periode, setPeriode] = useState("");
@@ -64,11 +62,9 @@ const ReportCard = () => {
         });
       }
       else { 
-        response = response.replace(/^"(.+)"$/, "$1");
-        const decrypted = JSON.parse(
-          CryptoJS.AES.decrypt(response, key).toString(CryptoJS.enc.Utf8)
-        );
-
+      
+     
+        const decrypted = JSON.parse(JSON.parse(response));
         setDateReportCard(decrypted.date);
         setStudent(decrypted.student);
         setDateNaissance(decrypted.dateNaissance);
@@ -93,9 +89,8 @@ const ReportCard = () => {
       periode: periode
     };
     const stringReportCard = JSON.stringify(ReportCard);
-    const encrypted = CryptoJS.AES.encrypt(stringReportCard, key);
     updateReportCardFunction(
-      encrypted.toString(),
+      stringReportCard,
       Number(code),
       (error, response) => {
         if (error) console.error(error);

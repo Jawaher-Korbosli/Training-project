@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import CryptoJS from "crypto-js";
-import QRCode from "qrcode";
+
 import { addReportCardFunction, isTeacherFunction } from "../api/web3";
 import "./Teacher.css";
 import Swal from "sweetalert2";
@@ -49,7 +48,6 @@ const Teacher = () => {
   const [gradeMatter, setGrade] = useState("");
   const [periodeMatter, setPeriode] = useState("");
 
-  const [id, setId] = useState("79948087976a297cda296d35efaf9a5eaea57528");
 
 
   const convertisseurStringToJson = () => {
@@ -68,7 +66,6 @@ const Teacher = () => {
       });
     } else {
       setShowModal(true);
-      //const id = generateId(40);
 
       const ReportCard = {
         date: dateReportCard,
@@ -80,9 +77,8 @@ const Teacher = () => {
       };
       const stringReportCard = JSON.stringify(ReportCard);
 
-      const encrypted = CryptoJS.AES.encrypt(stringReportCard, id);
-
-      addReportCardFunction(encrypted.toString(), (error, response) => {
+     
+      addReportCardFunction(stringReportCard, (error, response) => {
         if (error) {
           console.log("error" + error);
           setShowModal(false);
